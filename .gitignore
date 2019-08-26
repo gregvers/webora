@@ -6,3 +6,5 @@ __pycache
 k8s/create_secrets-greg.sh
 .idea/*
 dbwallet/*
+env-greg.sh
+k8s/create_secrets-greg.sh

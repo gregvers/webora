@@ -1,3 +1,3 @@
 export DBUSER="admin"
-export DBPWD="3R3fhmi.AMyQ"
-export DBSVC="gregdb_high"
+export DBPWD="xxxxxxx"
+export DBSVC="db_high"

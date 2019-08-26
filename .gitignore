@@ -1,0 +1,8 @@
+# Dependency directories
+.DS_Store
+*/.DS_Store
+*.rpm
+__pycache
+k8s/create_secrets-greg.sh
+.idea/*
+dbwallet/*

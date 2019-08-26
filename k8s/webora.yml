@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webora
+spec:
+  selector:
+    matchLabels:
+      app: webora
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: webora
+        version: "1"
+    spec:
+      containers:
+      - name: webora
+        image: phx.ocir.io/ocicpm/webora:1
+        ports:
+        - containerPort: 5000
+        env:
+          - name: DBSVC
+            valueFrom:
+              configMapKeyRef:
+                name: webora-parameters
+                key: dbservice
+          - name: DBUSER
+            valueFrom:
+              secretKeyRef:
+                name: gregdb-admin-credentials
+                key: username
+          - name: DBPWD
+            valueFrom:
+              secretKeyRef:
+                name: gregdb-admin-credentials
+                key: password
+        volumeMounts:
+          - name: dbwallet
+            mountPath: /usr/lib/oracle/19.3/client64/network/admin/
+      imagePullSecrets:
+      - name: ocirsecret
+      volumes:
+        - name: dbwallet
+          secret:
+            secretName: gregdb-wallet
